@@ -698,23 +698,10 @@ footer {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Dark mode toggle button */
+/* Dark mode toggle button - extends icon-button */
 #theme-toggle {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 4px 12px;
-  font-size: 0.85rem;
-  transition: background-color 0.2s;
   cursor: pointer;
   border: none;
-  color: var(--primary-text);
-}
-
-#theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .theme-icon {
