@@ -569,7 +569,32 @@ document.addEventListener("DOMContentLoaded", () => {
         `
         }
       </div>
+      <div class="social-share-container">
+        <span class="social-share-label">Share with friends!</span>
+        <div class="social-share-buttons">
+          <button class="social-share-btn share-facebook" data-activity="${name}" data-platform="facebook" title="Share on Facebook">
+            📘
+          </button>
+          <button class="social-share-btn share-twitter" data-activity="${name}" data-platform="twitter" title="Share on X (Twitter)">
+            🐦
+          </button>
+          <button class="social-share-btn share-whatsapp" data-activity="${name}" data-platform="whatsapp" title="Share on WhatsApp">
+            💬
+          </button>
+          <button class="social-share-btn share-email" data-activity="${name}" data-platform="email" title="Share via Email">
+            ✉️
+          </button>
+        </div>
+      </div>
     `;
+
+    // Add click handlers for social share buttons
+    const shareButtons = activityCard.querySelectorAll(".social-share-btn");
+    shareButtons.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        handleSocialShare(event, name, details.description, formattedSchedule);
+      });
+    });
 
     // Add click handlers for delete buttons
     const deleteButtons = activityCard.querySelectorAll(".delete-participant");
@@ -809,6 +834,49 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       messageDiv.classList.add("hidden");
     }, 5000);
+  }
+
+  // Handle social sharing
+  function handleSocialShare(event, activityName, description, schedule) {
+    const platform = event.currentTarget.dataset.platform;
+    const pageUrl = window.location.href;
+    const shareText = `Check out ${activityName} at Mergington High School! ${description} Schedule: ${schedule}`;
+    const encodedText = encodeURIComponent(shareText);
+    const encodedUrl = encodeURIComponent(pageUrl);
+
+    let shareUrl = "";
+
+    switch (platform) {
+      case "facebook":
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}`;
+        break;
+      case "twitter":
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`;
+        break;
+      case "whatsapp":
+        shareUrl = `https://wa.me/?text=${encodedText}%20${encodedUrl}`;
+        break;
+      case "email":
+        const subject = encodeURIComponent(
+          `Check out ${activityName} at Mergington High School!`
+        );
+        const body = encodeURIComponent(
+          `${shareText}\n\nLearn more: ${pageUrl}`
+        );
+        shareUrl = `mailto:?subject=${subject}&body=${body}`;
+        break;
+      default:
+        return;
+    }
+
+    // Open share dialog in new window (except email which uses mailto)
+    if (platform === "email") {
+      window.location.href = shareUrl;
+    } else {
+      window.open(shareUrl, "_blank", "width=600,height=400,noopener,noreferrer");
+    }
+
+    showMessage(`Opening ${platform} to share ${activityName}!`, "info");
   }
 
   // Handle form submission

@@ -664,3 +664,143 @@ footer {
 #logout-button:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
+
+/* Social Sharing Buttons */
+.social-share-container {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.social-share-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.social-share-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.social-share-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-share-btn::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+  z-index: -1;
+  animation: pulse-glow 2s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.social-share-btn:hover::before {
+  opacity: 1;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.social-share-btn:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.social-share-btn:active {
+  transform: translateY(-1px) scale(1.05);
+}
+
+/* Facebook */
+.share-facebook {
+  background: linear-gradient(135deg, #1877f2, #165fd3);
+  color: white;
+}
+
+.share-facebook:hover {
+  background: linear-gradient(135deg, #1565c0, #0d47a1);
+}
+
+/* Twitter/X */
+.share-twitter {
+  background: linear-gradient(135deg, #1da1f2, #0c85d0);
+  color: white;
+}
+
+.share-twitter:hover {
+  background: linear-gradient(135deg, #0c85d0, #0a6eb4);
+}
+
+/* WhatsApp */
+.share-whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+}
+
+.share-whatsapp:hover {
+  background: linear-gradient(135deg, #128c7e, #075e54);
+}
+
+/* Email */
+.share-email {
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+  color: white;
+}
+
+.share-email:hover {
+  background: linear-gradient(135deg, var(--secondary-dark), #a03000);
+}
+
+/* Highlight animation for attention */
+.social-share-container {
+  animation: highlight-fade 3s ease-in-out;
+}
+
+@keyframes highlight-fade {
+  0% {
+    background-color: rgba(255, 111, 0, 0.15);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 8px -8px -8px -8px;
+  }
+  100% {
+    background-color: transparent;
+    padding: 10px 0 0 0;
+    margin: 10px 0 0 0;
+  }
+}
