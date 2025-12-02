@@ -759,12 +759,12 @@ footer {
 
 /* Twitter/X */
 .share-twitter {
-  background: linear-gradient(135deg, #1da1f2, #0c85d0);
+  background: linear-gradient(135deg, #000000, #333333);
   color: white;
 }
 
 .share-twitter:hover {
-  background: linear-gradient(135deg, #0c85d0, #0a6eb4);
+  background: linear-gradient(135deg, #333333, #555555);
 }
 
 /* WhatsApp */
