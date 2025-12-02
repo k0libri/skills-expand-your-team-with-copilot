@@ -577,18 +577,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       </div>
       <div class="social-share-container">
-        <span class="social-share-label">Share with friends!</span>
+        <span class="social-share-label">Share with your friends!</span>
         <div class="social-share-buttons">
-          <button class="social-share-btn share-facebook" data-activity="${escapeHtml(name)}" data-platform="facebook" title="Share on Facebook">
+          <button class="social-share-btn share-facebook" data-activity="${escapeHtml(name)}" data-platform="facebook" title="Share on Facebook" aria-label="Share on Facebook">
             📘
           </button>
-          <button class="social-share-btn share-twitter" data-activity="${escapeHtml(name)}" data-platform="twitter" title="Share on X (Twitter)">
+          <button class="social-share-btn share-twitter" data-activity="${escapeHtml(name)}" data-platform="twitter" title="Share on X (Twitter)" aria-label="Share on X Twitter">
             🐦
           </button>
-          <button class="social-share-btn share-whatsapp" data-activity="${escapeHtml(name)}" data-platform="whatsapp" title="Share on WhatsApp">
+          <button class="social-share-btn share-whatsapp" data-activity="${escapeHtml(name)}" data-platform="whatsapp" title="Share on WhatsApp" aria-label="Share on WhatsApp">
             💬
           </button>
-          <button class="social-share-btn share-email" data-activity="${escapeHtml(name)}" data-platform="email" title="Share via Email">
+          <button class="social-share-btn share-email" data-activity="${escapeHtml(name)}" data-platform="email" title="Share via Email" aria-label="Share via Email">
             ✉️
           </button>
         </div>
