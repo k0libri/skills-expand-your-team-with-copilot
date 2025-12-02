@@ -674,6 +674,7 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  animation: highlight-fade 3s ease-in-out;
 }
 
 .social-share-label {
@@ -784,11 +785,6 @@ footer {
 
 .share-email:hover {
   background: linear-gradient(135deg, var(--secondary-dark), #a03000);
-}
-
-/* Highlight animation for attention */
-.social-share-container {
-  animation: highlight-fade 3s ease-in-out;
 }
 
 @keyframes highlight-fade {

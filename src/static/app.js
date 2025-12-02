@@ -25,6 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeLoginModal = document.querySelector(".close-login-modal");
   const loginMessage = document.getElementById("login-message");
 
+  // Helper function to escape HTML to prevent XSS
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
   // Activity categories with corresponding colors
   const activityTypes = {
     sports: { label: "Sports", color: "#e8f5e9", textColor: "#2e7d32" },
@@ -572,16 +579,16 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="social-share-container">
         <span class="social-share-label">Share with friends!</span>
         <div class="social-share-buttons">
-          <button class="social-share-btn share-facebook" data-activity="${name}" data-platform="facebook" title="Share on Facebook">
+          <button class="social-share-btn share-facebook" data-activity="${escapeHtml(name)}" data-platform="facebook" title="Share on Facebook">
             📘
           </button>
-          <button class="social-share-btn share-twitter" data-activity="${name}" data-platform="twitter" title="Share on X (Twitter)">
+          <button class="social-share-btn share-twitter" data-activity="${escapeHtml(name)}" data-platform="twitter" title="Share on X (Twitter)">
             🐦
           </button>
-          <button class="social-share-btn share-whatsapp" data-activity="${name}" data-platform="whatsapp" title="Share on WhatsApp">
+          <button class="social-share-btn share-whatsapp" data-activity="${escapeHtml(name)}" data-platform="whatsapp" title="Share on WhatsApp">
             💬
           </button>
-          <button class="social-share-btn share-email" data-activity="${name}" data-platform="email" title="Share via Email">
+          <button class="social-share-btn share-email" data-activity="${escapeHtml(name)}" data-platform="email" title="Share via Email">
             ✉️
           </button>
         </div>
@@ -869,11 +876,15 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Open share dialog in new window (except email which uses mailto)
+    // Validate URL protocol before opening to prevent security issues
     if (platform === "email") {
-      window.location.href = shareUrl;
+      if (shareUrl.startsWith("mailto:")) {
+        window.location.href = shareUrl;
+      }
     } else {
-      window.open(shareUrl, "_blank", "width=600,height=400,noopener,noreferrer");
+      if (shareUrl.startsWith("https://")) {
+        window.open(shareUrl, "_blank", "width=600,height=400,noopener,noreferrer");
+      }
     }
 
     showMessage(`Opening ${platform} to share ${activityName}!`, "info");
